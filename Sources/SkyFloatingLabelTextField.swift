@@ -442,46 +442,59 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
         updateTextColor()
     }
 
+    open var lineColorForCurrentState: UIColor? {
+        let color: UIColor?
+        if !isEnabled {
+            color = disabledColor
+        } else if hasErrorMessage {
+            color = lineErrorColor ?? errorColor
+        } else {
+            color = editingOrSelected ? selectedLineColor : lineColor
+        }
+        return color
+    }
+
     fileprivate func updateLineColor() {
         guard let lineView = lineView else {
             return
         }
+        lineView.backgroundColor = lineColorForCurrentState
+    }
 
+    open var titleColorForCurrentState: UIColor? {
+        let color: UIColor?
         if !isEnabled {
-            lineView.backgroundColor = disabledColor
+            color = disabledColor
         } else if hasErrorMessage {
-            lineView.backgroundColor = lineErrorColor ?? errorColor
+            color = titleErrorColor ?? errorColor
         } else {
-            lineView.backgroundColor = editingOrSelected ? selectedLineColor : lineColor
+            if editingOrSelected || isHighlighted {
+                color = selectedTitleColor
+            } else {
+                color = titleColor
+            }
         }
+        return color
     }
 
     fileprivate func updateTitleColor() {
-        guard let titleLabel = titleLabel else {
-            return
-        }
+        titleLabel?.textColor = titleColorForCurrentState
+    }
 
+    open var textColorForCurrentState: UIColor? {
+        let color: UIColor?
         if !isEnabled {
-            titleLabel.textColor = disabledColor
+            color = disabledColor
         } else if hasErrorMessage {
-            titleLabel.textColor = titleErrorColor ?? errorColor
+            color = textErrorColor ?? errorColor
         } else {
-            if editingOrSelected || isHighlighted {
-                titleLabel.textColor = selectedTitleColor
-            } else {
-                titleLabel.textColor = titleColor
-            }
+            color = cachedTextColor
         }
+        return color
     }
 
     fileprivate func updateTextColor() {
-        if !isEnabled {
-            super.textColor = disabledColor
-        } else if hasErrorMessage {
-            super.textColor = textErrorColor ?? errorColor
-        } else {
-            super.textColor = cachedTextColor
-        }
+        super.textColor = textColorForCurrentState
     }
 
     // MARK: - Title handling
