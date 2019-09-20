@@ -16,13 +16,19 @@ import UIKit
  */
 @IBDesignable
 open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this type_body_length
+
+    private var overrideLTRLanguage: Bool?
     /**
      A Boolean value that determines if the language displayed is LTR. 
      Default value set automatically from the application language settings.
      */
-    @objc open var isLTRLanguage: Bool = UIApplication.shared.userInterfaceLayoutDirection == .leftToRight {
-        didSet {
-           updateTextAligment()
+    @objc open var isLTRLanguage: Bool {
+        get {
+            return overrideLTRLanguage ?? (traitCollection.layoutDirection == .leftToRight)
+        }
+        set {
+            overrideLTRLanguage = newValue
+            updateTextAligment()
         }
     }
 
@@ -79,24 +85,24 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
         }
         let color = isEnabled ? placeholderColor : disabledColor
         #if swift(>=4.2)
-            attributedPlaceholder = NSAttributedString(
-                string: placeholder,
-                attributes: [
-                    NSAttributedString.Key.foregroundColor: color, NSAttributedString.Key.font: font
-                ]
-            )
+        attributedPlaceholder = NSAttributedString(
+            string: placeholder,
+            attributes: [
+                NSAttributedString.Key.foregroundColor: color, NSAttributedString.Key.font: font
+            ]
+        )
         #elseif swift(>=4.0)
-            attributedPlaceholder = NSAttributedString(
-                string: placeholder,
-                attributes: [
-                    NSAttributedStringKey.foregroundColor: color, NSAttributedStringKey.font: font
-                ]
-            )
+        attributedPlaceholder = NSAttributedString(
+            string: placeholder,
+            attributes: [
+                NSAttributedStringKey.foregroundColor: color, NSAttributedStringKey.font: font
+            ]
+        )
         #else
-            attributedPlaceholder = NSAttributedString(
-                string: placeholder,
-                attributes: [NSForegroundColorAttributeName: color, NSFontAttributeName: font]
-            )
+        attributedPlaceholder = NSAttributedString(
+            string: placeholder,
+            attributes: [NSForegroundColorAttributeName: color, NSFontAttributeName: font]
+        )
         #endif
     }
 
@@ -200,10 +206,10 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
     // MARK: Properties
 
     /**
-    The formatter used before displaying content in the title label. 
-    This can be the `title`, `selectedTitle` or the `errorMessage`.
-    The default implementation converts the text to uppercase.
-    */
+     The formatter used before displaying content in the title label.
+     This can be the `title`, `selectedTitle` or the `errorMessage`.
+     The default implementation converts the text to uppercase.
+     */
     open var titleFormatter: ((String) -> String) = { (text: String) -> String in
         if #available(iOS 9.0, *) {
             return text.localizedUppercase
@@ -308,9 +314,9 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
     // MARK: - Initializers
 
     /**
-    Initializes the control
-    - parameter frame the frame of the control
-    */
+     Initializes the control
+     - parameter frame the frame of the control
+     */
     override public init(frame: CGRect) {
         super.init(frame: frame)
         init_SkyFloatingLabelTextField()
@@ -383,7 +389,7 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
     /**
      Attempt the control to become the first responder
      - returns: True when successfull becoming the first responder
-    */
+     */
     @discardableResult
     override open func becomeFirstResponder() -> Bool {
         let result = super.becomeFirstResponder()
@@ -507,8 +513,8 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
     fileprivate var _titleVisible: Bool = false
 
     /*
-    *   Set this value to make the title visible
-    */
+     *   Set this value to make the title visible
+     */
     open func setTitleVisible(
         _ titleVisible: Bool,
         animated: Bool = false,
@@ -539,14 +545,14 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
         }
         if animated {
             #if swift(>=4.2)
-                let animationOptions: UIView.AnimationOptions = .curveEaseOut
+            let animationOptions: UIView.AnimationOptions = .curveEaseOut
             #else
-                let animationOptions: UIViewAnimationOptions = .curveEaseOut
+            let animationOptions: UIViewAnimationOptions = .curveEaseOut
             #endif
             let duration = isTitleVisible() ? titleFadeInDuration : titleFadeOutDuration
             UIView.animate(withDuration: duration, delay: 0, options: animationOptions, animations: { () -> Void in
                 updateBlock()
-                }, completion: completion)
+            }, completion: completion)
         } else {
             updateBlock()
             completion?(true)
@@ -556,10 +562,10 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
     // MARK: - UITextField text/placeholder positioning overrides
 
     /**
-    Calculate the rectangle for the textfield when it is not being edited
-    - parameter bounds: The current bounds of the field
-    - returns: The rectangle that the textfield should render in
-    */
+     Calculate the rectangle for the textfield when it is not being edited
+     - parameter bounds: The current bounds of the field
+     - returns: The rectangle that the textfield should render in
+     */
     override open func textRect(forBounds bounds: CGRect) -> CGRect {
         let superRect = super.textRect(forBounds: bounds)
         let titleHeight = self.titleHeight()
@@ -609,11 +615,11 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
     // MARK: - Positioning Overrides
 
     /**
-    Calculate the bounds for the title label. Override to create a custom size title field.
-    - parameter bounds: The current bounds of the title
-    - parameter editing: True if the control is selected or highlighted
-    - returns: The rectangle that the title label should render in
-    */
+     Calculate the bounds for the title label. Override to create a custom size title field.
+     - parameter bounds: The current bounds of the title
+     - parameter editing: True if the control is selected or highlighted
+     - returns: The rectangle that the title label should render in
+     */
     open func titleLabelRectForBounds(_ bounds: CGRect, editing: Bool) -> CGRect {
         if editing {
             return CGRect(x: 0, y: 0, width: bounds.size.width, height: titleHeight())
