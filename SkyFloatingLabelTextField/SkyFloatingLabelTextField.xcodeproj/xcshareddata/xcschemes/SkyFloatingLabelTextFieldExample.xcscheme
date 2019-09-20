@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0800"
+   LastUpgradeVersion = "1100"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F56289171C3BE3A20082D9A6"
-               BuildableName = "SkyFloatingLabelTextField.framework"
-               BlueprintName = "SkyFloatingLabelTextField"
+               BlueprintIdentifier = "F547D4AB1C3BEA8F0075A0C2"
+               BuildableName = "SkyFloatingLabelTextFieldExample.app"
+               BlueprintName = "SkyFloatingLabelTextFieldExample"
                ReferencedContainer = "container:SkyFloatingLabelTextField.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -26,28 +26,8 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      codeCoverageEnabled = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F56289171C3BE3A20082D9A6"
-            BuildableName = "SkyFloatingLabelTextField.framework"
-            BlueprintName = "SkyFloatingLabelTextField"
-            ReferencedContainer = "container:SkyFloatingLabelTextField.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F56289211C3BE3A20082D9A6"
-               BuildableName = "SkyFloatingLabelTextFieldTests.xctest"
-               BlueprintName = "SkyFloatingLabelTextFieldTests"
-               ReferencedContainer = "container:SkyFloatingLabelTextField.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -60,15 +40,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F56289171C3BE3A20082D9A6"
-            BuildableName = "SkyFloatingLabelTextField.framework"
-            BlueprintName = "SkyFloatingLabelTextField"
+            BlueprintIdentifier = "F547D4AB1C3BEA8F0075A0C2"
+            BuildableName = "SkyFloatingLabelTextFieldExample.app"
+            BlueprintName = "SkyFloatingLabelTextFieldExample"
             ReferencedContainer = "container:SkyFloatingLabelTextField.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -76,15 +57,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F56289171C3BE3A20082D9A6"
-            BuildableName = "SkyFloatingLabelTextField.framework"
-            BlueprintName = "SkyFloatingLabelTextField"
+            BlueprintIdentifier = "F547D4AB1C3BEA8F0075A0C2"
+            BuildableName = "SkyFloatingLabelTextFieldExample.app"
+            BlueprintName = "SkyFloatingLabelTextFieldExample"
             ReferencedContainer = "container:SkyFloatingLabelTextField.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
