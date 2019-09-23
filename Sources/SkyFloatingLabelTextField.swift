@@ -706,7 +706,7 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
      - returns: the content size to be used for auto layout
      */
     override open var intrinsicContentSize: CGSize {
-        return CGSize(width: bounds.size.width, height: titleHeight() + textHeight())
+        return CGSize(width: super.intrinsicContentSize.width, height: titleHeight() + textHeight())
     }
 
     // MARK: - Helpers
