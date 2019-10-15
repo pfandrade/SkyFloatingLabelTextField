@@ -341,10 +341,9 @@
 			};
 			buildConfigurationList = F56289121C3BE3A10082D9A6 /* Build configuration list for PBXProject "SkyFloatingLabelTextField" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 				he,
