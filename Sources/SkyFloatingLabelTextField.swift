@@ -24,10 +24,17 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
      */
     @objc open var isLTRLanguage: Bool {
         get {
-            return overrideLTRLanguage ?? (traitCollection.layoutDirection == .leftToRight)
+            return overrideLTRLanguage ?? (traitCollection.layoutDirection != .rightToLeft)
         }
         set {
             overrideLTRLanguage = newValue
+            updateTextAligment()
+        }
+    }
+
+    open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if previousTraitCollection?.layoutDirection != traitCollection.layoutDirection {
             updateTextAligment()
         }
     }
